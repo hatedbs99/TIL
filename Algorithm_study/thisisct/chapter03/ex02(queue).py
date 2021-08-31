@@ -8,7 +8,11 @@ queue.append(2)
 queue.append(3)
 queue.append(7)
 
-queue.popleft()
+print(queue)
+
+
+a = queue.popleft()
+print(a)
 queue.append(1)
 queue.append(4)
 
