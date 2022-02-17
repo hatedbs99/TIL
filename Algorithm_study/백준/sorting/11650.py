@@ -1,11 +1,10 @@
 import sys
-l = []
 
-n = int(input())
-for _ in range(n):
-    a, b = map(int, sys.stdin.readline().split())
-    l.append((a, b))
-l.sort(key=lambda x:(x[0], x[1]))
+data = [sys.stdin.readline() for _ in range(int(input()))]
 
-for i in range(n):
-    print(l[i][0], l[i][1])
+print(data)
+data.sort(key=lambda x: tuple(map(int, x.split())))
+# data.sort(key=lambda x: (x[0], x[1]))
+print(data)
+print("".join(data))
+
