@@ -11,7 +11,3 @@ for i in t:
     dq.append(i)
 
 # print(dq)
-
-
-
-
