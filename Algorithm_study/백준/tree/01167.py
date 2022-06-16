@@ -1,27 +1,36 @@
-from sys import stdin
+from sys import stdin; input = stdin.readline
+from collections import deque
+
 
 n = int(input())
 tree = [[] for i in range(n + 1)]
 
 for _ in range(n):
-    l = list(map(int, stdin.readline().split()))
-    for i in range(1, len(l)-2, 2):
-        tree[l[0]].append((l[i], l[i+1]))
+    node = 0
+    tmp_list = list(map(int, input().split()))
+    for i in range(1, len(tmp_list)-1, 2):
+        tree[tmp_list[0]].append((tmp_list[i], tmp_list[i+1]))
 
-print(tree)
+answer = 0
 
-#
-# q = [1]
-# ans = {}
-# check = [False for i in range(n+1)]
-#
-# while len(q) > 0:
-#     parent = q.pop(0)
-#     for i in tree[parent]:
-#         if not check[i]:
-#             ans[i] = parent
-#             q.append(i)
-#             check[i] = True
-#
-# for i in range(2, n+1):
-#     print(ans[i])
+
+def bfs(start):
+    global answer
+    visit = [-1] * (n + 1)
+    visit[start[0]] = 0
+    q = deque([start])
+    rt = (0, 0)
+    while q:
+        cur, w = q.popleft()
+        for adj, adj_w in tree[cur]:
+            if visit[adj] != -1:
+                continue
+            visit[adj] = visit[cur] + adj_w
+            q.append((adj, adj_w))
+            if rt[1] < visit[adj]:
+                rt = (adj, visit[adj])
+    return rt
+
+rt = bfs((1, 0))
+answer = bfs((rt[0], 0))
+print(answer[1])
