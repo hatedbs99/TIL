@@ -1,15 +1,16 @@
-from sys import stdin; input = stdin.readline
+from sys import stdin
 from collections import deque
 
 
+input = stdin.readline
 n = int(input())
 tree = [[] for i in range(n + 1)]
 
 for _ in range(n):
     node = 0
     tmp_list = list(map(int, input().split()))
-    for i in range(1, len(tmp_list)-1, 2):
-        tree[tmp_list[0]].append((tmp_list[i], tmp_list[i+1]))
+    for i in range(1, len(tmp_list) - 1, 2):
+        tree[tmp_list[0]].append((tmp_list[i], tmp_list[i + 1]))
 
 answer = 0
 
@@ -30,6 +31,7 @@ def bfs(start):
             if rt[1] < visit[adj]:
                 rt = (adj, visit[adj])
     return rt
+
 
 rt = bfs((1, 0))
 answer = bfs((rt[0], 0))
